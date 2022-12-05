@@ -11,4 +11,5 @@ struct Widget {
 	char label[MAX_NAME_LENGTH];
 	Widget *prev;
 	Widget *next;
-};
+}
+#endif

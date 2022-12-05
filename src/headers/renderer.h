@@ -15,7 +15,7 @@ class Renderer {
   void Render(Snake const snake, SDL_Point const &food);
   void UpdateWindowTitle(int score, int fps);
   void RenderPauseMenu();
-  void RenderText(Text text);
+  void RenderText(Text text, const size_t x, const size_t y);
 
  private:
   SDL_Window *sdl_window;

@@ -97,34 +97,36 @@ void Renderer::RenderPauseMenu()
   SDL_RenderClear(sdl_renderer);
 
   // write pause
-  Text pause_text{10,"GAME IS PAUSED",SDL_Color(255,255,0,255)};
-  pause_text.set_text_rect(screen_width/2, screen_height/2);
-  RenderText(pause_text);
+  const SDL_Color color = {255,0,0,255};
+  const std::string text = "GAME IS PAUSED";
+  // Text pause_text{"/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",10,text,color};
+  // pause_text.set_text_rect(screen_width/2, screen_height/2);
+  // RenderText(pause_text,screen_width/2, screen_height/2);
   //write widgets
 }
 
-void Renderer::RenderText(Text text, const size_t x, const size_t y){
-  SDL_Texture = load_font(text.get_font_path(), text.font_size, text.message, text.color);
-  SDL_RenderCopy(self,_text_texture,nullptr,&text.get_text_rect());
-}
 
-SDL_Texture *Renderer::load_font(Text text){
-    TTF_Font *font = TTF_OpenFont(text.get_font_path.c_str(),text.font_size);
-    if(!font){
-        std::cerr << "Failed to load font" << std::endl;
-    }
-    auto surface = TTF_RenderText_Solid(font,text.message.c_str(),text.color);
-    if(!surface){
-        std::cerr << "Failed to create surface" << std::endl;
-    }
 
-    auto text_texture = SDL_CreateTextureFromSurface(self, text_surface);
-    if(!text_texture){
-        std::cerr << "Failed to create text texture" << std::endl;
-    }
-    return text_texture;
-}
+// SDL_Texture *load_font(Text text){
+//     TTF_Font *font = TTF_OpenFont(text.get_font_path.c_str(),text.font_size);
+//     if(!font){
+//         std::cerr << "Failed to load font" << std::endl;
+//     }
+//     auto surface = TTF_RenderText_Solid(font,text.message.c_str(),text.color);
+//     if(!surface){
+//         std::cerr << "Failed to create surface" << std::endl;
+//     }
 
+//     auto text_texture = SDL_CreateTextureFromSurface(self, text_surface);
+//     if(!text_texture){
+//         std::cerr << "Failed to create text texture" << std::endl;
+//     }
+//     return text_texture;
+// }
+// void Renderer::RenderText(Text text, const size_t x, const size_t y){
+//   SDL_Texture texture = *load_font(text.get_font_path(), text.font_size, text.message, text.color);
+//   SDL_RenderCopy(self,texture,nullptr,&text.get_text_rect());
+// }
 void Renderer::UpdateWindowTitle(int score, int fps)
 {
   std::string title{"Snake Score: " + std::to_string(score) + " FPS: " + std::to_string(fps)};
