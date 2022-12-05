@@ -1,15 +1,26 @@
-#include "controller.h"
+#include "headers/controller.h"
 #include <iostream>
 #include "SDL.h"
-#include "snake.h"
+#include "headers/snake.h"
 
 void Controller::ChangeDirection(Snake &snake, Snake::Direction input,
                                  Snake::Direction opposite) const {
   if (snake.direction != opposite || snake.size == 1) snake.direction = input;
   return;
 }
+void Controller::SnakeUnpause(Snake &snake) const{
+  snake.speed = snake.prev_speed; 
+  // don't want to put in prev speed 0 because pause 'stops time' so snake would be at previous speed and never know of the 0 speed
+  return;
+}
 
-void Controller::HandleInput(bool &running, Snake &snake) const {
+void Controller::SnakePause(Snake &snake) const{
+  snake.prev_speed = snake.speed;
+  snake.speed = 0.0;
+  return;
+}
+
+void Controller::HandleInput(bool &running, Snake &snake, bool &paused) const {
   SDL_Event e;
   while (SDL_PollEvent(&e)) {
     if (e.type == SDL_QUIT) {
@@ -34,6 +45,19 @@ void Controller::HandleInput(bool &running, Snake &snake) const {
         case SDLK_RIGHT:
           ChangeDirection(snake, Snake::Direction::kRight,
                           Snake::Direction::kLeft);
+          break;
+        
+        case SDLK_ESCAPE:
+          if(paused){
+            // already paused, unpaused
+            std::cout << "PRESSED ESCAPE: Unpausing" << std::endl;
+            paused = false;
+            SnakeUnpause(snake);
+          }else{
+            std::cout << "PRESSED ESCAPE: Pausing" << std::endl;
+            paused = true;
+            SnakePause(snake);
+          }
           break;
       }
     }

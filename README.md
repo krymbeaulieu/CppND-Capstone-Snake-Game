@@ -12,6 +12,7 @@ In this project, you can build your own C++ application or extend this Snake gam
 - Snake can no longer wrap around the window edges
 - Lose screen, try again reload
 - Score history tracking
+- pause the game
 
 
 ## Dependencies for Running Locally
@@ -28,7 +29,7 @@ In this project, you can build your own C++ application or extend this Snake gam
   * Linux: gcc / g++ is installed by default on most Linux distros
   * Mac: same deal as make - [install Xcode command line tools](https://developer.apple.com/xcode/features/)
   * Windows: recommend using [MinGW](http://www.mingw.org/)
-
+* [SDLTTF](https://github.com/libsdl-org/SDL_ttf) 
 ## Basic Build Instructions
 
 1. Clone this repo.
@@ -50,6 +51,9 @@ This work is licensed under a
 [cc-by-sa]: http://creativecommons.org/licenses/by-sa/4.0/
 [cc-by-sa-image]: https://licensebuttons.net/l/by-sa/4.0/88x31.png
 [cc-by-sa-shield]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
+
+### Other Code Credits
+[CDL Tutorials]: https://www.parallelrealities.co.uk/tutorials
 
 ## Rubric Criteria Met
 ### README (All Rubric Points REQUIRED)

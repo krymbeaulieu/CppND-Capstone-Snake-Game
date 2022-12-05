@@ -1,4 +1,4 @@
-#include "game.h"
+#include "headers/game.h"
 #include <iostream>
 #include "SDL.h"
 
@@ -18,14 +18,22 @@ void Game::Run(Controller const &controller, Renderer &renderer,
   Uint32 frame_duration;
   int frame_count = 0;
   bool running = true;
+  bool paused = false;
+  
+
 
   while (running) {
     frame_start = SDL_GetTicks();
 
     // Input, Update, Render - the main game loop.
-    controller.HandleInput(running, snake);
+    controller.HandleInput(running, snake, paused);
     Update();
-    renderer.Render(snake, food);
+    if(paused){
+      renderer.RenderPauseMenu();
+    }else{
+      renderer.Render(snake, food);
+    }
+    
 
     frame_end = SDL_GetTicks();
 
@@ -67,7 +75,9 @@ void Game::PlaceFood() {
 
 void Game::Update() {
   if (!snake.alive) return;
-
+  // if (paused){
+    
+  // }
   snake.Update();
 
   int new_x = static_cast<int>(snake.head_x);
@@ -79,6 +89,7 @@ void Game::Update() {
     PlaceFood();
     // Grow snake and increase speed.
     snake.GrowBody();
+    snake.prev_speed = snake.speed;
     snake.speed += 0.02;
   }
 }

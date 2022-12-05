@@ -1,4 +1,4 @@
-#include "snake.h"
+#include "headers/snake.h"
 #include <cmath>
 #include <iostream>
 
