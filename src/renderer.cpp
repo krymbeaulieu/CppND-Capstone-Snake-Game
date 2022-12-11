@@ -1,7 +1,11 @@
-#include "headers/renderer.h"
-#include "headers/text.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <iostream>
 #include <string>
+#include "headers/defs.h"
+#include "headers/renderer.h"
+#include "headers/text.h"
 
 Renderer::Renderer(const std::size_t screen_width,
                    const std::size_t screen_height,
@@ -12,11 +16,13 @@ Renderer::Renderer(const std::size_t screen_width,
       grid_height(grid_height)
 {
   // Initialize SDL
-  if (SDL_Init(SDL_INIT_VIDEO) < 0)
+  if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
   {
     std::cerr << "SDL could not initialize.\n";
     std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
   }
+  TTF_Init();
+
 
   // Create Window
   sdl_window = SDL_CreateWindow("Snake Game", SDL_WINDOWPOS_CENTERED,
@@ -41,6 +47,7 @@ Renderer::Renderer(const std::size_t screen_width,
 Renderer::~Renderer()
 {
   SDL_DestroyWindow(sdl_window);
+  TTF_Quit();
   SDL_Quit();
 }
 
@@ -86,47 +93,46 @@ void Renderer::Render(Snake const snake, SDL_Point const &food)
   SDL_RenderPresent(sdl_renderer);
 }
 
-void Renderer::RenderPauseMenu()
-{
-  SDL_Rect block;
-  block.w = screen_width / grid_width;
-  block.h = screen_height / grid_height;
+void Renderer::RenderLoseScreen(){
+  // set you lose text
+  // if(){
+  //   std::cout << "YOU MADE A HIGH SCORE" << std::endl;
+  // }
+  ClearScreen();
 
-  // Clear screen
-  SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
-  SDL_RenderClear(sdl_renderer);
+  Text lose_text(sdl_renderer,FONT_FNAME,GAME_LOSE_FONT_SIZE,GAME_LOSE_TEXT,GAME_LOSE_COLOR);
+  SDL_Rect center_loc = lose_text.center_text(screen_height,screen_width);
+  RenderText(lose_text,center_loc.x,center_loc.y/6);
+  SDL_RenderPresent(sdl_renderer); //puts image on screen
 
-  // write pause
-  const SDL_Color color = {255,0,0,255};
-  const std::string text = "GAME IS PAUSED";
-  // Text pause_text{"/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",10,text,color};
-  // pause_text.set_text_rect(screen_width/2, screen_height/2);
-  // RenderText(pause_text,screen_width/2, screen_height/2);
-  //write widgets
 }
 
+void Renderer::RenderPauseMenu()
+{
+  SDL_Rect pause_block {screen_width/4, screen_height/4, screen_width, screen_height };
 
+  // Clear screen
+  
+  ClearScreen();
 
-// SDL_Texture *load_font(Text text){
-//     TTF_Font *font = TTF_OpenFont(text.get_font_path.c_str(),text.font_size);
-//     if(!font){
-//         std::cerr << "Failed to load font" << std::endl;
-//     }
-//     auto surface = TTF_RenderText_Solid(font,text.message.c_str(),text.color);
-//     if(!surface){
-//         std::cerr << "Failed to create surface" << std::endl;
-//     }
+  // write pause
+  Text pause_text(sdl_renderer,FONT_FNAME,GAME_PAUSE_FONT_SIZE,GAME_PAUSE_TEXT,GAME_PAUSE_COLOR);
+  SDL_Rect center_loc = pause_text.center_text(screen_height,screen_width);
+  RenderText(pause_text,center_loc.x,center_loc.y);
+  SDL_RenderPresent(sdl_renderer); //puts image on screen
 
-//     auto text_texture = SDL_CreateTextureFromSurface(self, text_surface);
-//     if(!text_texture){
-//         std::cerr << "Failed to create text texture" << std::endl;
-//     }
-//     return text_texture;
-// }
-// void Renderer::RenderText(Text text, const size_t x, const size_t y){
-//   SDL_Texture texture = *load_font(text.get_font_path(), text.font_size, text.message, text.color);
-//   SDL_RenderCopy(self,texture,nullptr,&text.get_text_rect());
-// }
+}
+
+void Renderer::ClearScreen(){
+  SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
+  SDL_RenderClear(sdl_renderer);
+}
+void Renderer::RenderText(Text text, int x, int y){
+  text.set_text_rect(x,y);
+  SDL_Rect r = text.get_text_rect();
+  SDL_RenderCopy(sdl_renderer,text.get_text_texture(),nullptr,&r);
+  
+}
 void Renderer::UpdateWindowTitle(int score, int fps)
 {
   std::string title{"Snake Score: " + std::to_string(score) + " FPS: " + std::to_string(fps)};

@@ -30,12 +30,22 @@ In this project, you can build your own C++ application or extend this Snake gam
   * Mac: same deal as make - [install Xcode command line tools](https://developer.apple.com/xcode/features/)
   * Windows: recommend using [MinGW](http://www.mingw.org/)
 * [SDLTTF](https://github.com/libsdl-org/SDL_ttf) 
+  *
 ## Basic Build Instructions
 
 1. Clone this repo.
-2. Make a build directory in the top level directory: `mkdir build && cd build`
-3. Compile: `cmake .. && make`
-4. Run it: `./SnakeGame`.
+2. 
+Option 1 (install libs via provided script):
+  1. cd to repo
+  2. `./install_libs.sh`
+Option 2 (install libs seperately in terminal):
+  1. Install SDL ttf library: `sudo apt-get install libsdl2-ttf-dev`
+    * `y` to continue install
+  2. Install SDL Image library: `sudo apt-get install libsdl2-image-dev`
+    * `y` to continue install
+3. Make a build directory in the top level directory: `mkdir build && cd build`
+4. Compile: `cmake .. && make`
+5. Run it: `./SnakeGame`.
 
 
 ## CC Attribution-ShareAlike 4.0 International

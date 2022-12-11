@@ -1,20 +1,14 @@
-cmake_minimum_required(VERSION 3.7)
+
+project(SnakeGame)
+cmake_minimum_required(VERSION 2.8)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+add_executable(${PROJECT_NAME} src/text.cpp src/main.cpp src/game.cpp src/controller.cpp src/renderer.cpp src/snake.cpp src/widgets.cpp)
+INCLUDE(FindPkgConfig)
+PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
+PKG_SEARCH_MODULE(SDL2IMAGE REQUIRED SDL2_image>=2.0.0)
+PKG_SEARCH_MODULE(SDLTTF REQUIRED SDL2_ttf)
+INCLUDE_DIRECTORIES(${SDL2_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIRS} ${SDLTTF_INCLUDE_DIRS} src src/headers assets)
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES} ${SDLTTF_LIBRARIES}) 
+cmake_minimum_required(VERSION 2.8)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-add_definitions(-std=c++17)
-
-set(CXX_FLAGS "-Wall")
-set(CMAKE_CXX_FLAGS, "${CXX_FLAGS}")
-
-project(UpdatedSnake)
-
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
-
-find_package(SDL2 REQUIRED)
-
-include_directories(${SDL2_INCLUDE_DIRS} src src/headers)
-
-add_executable(SnakeGame src/main.cpp src/game.cpp src/controller.cpp src/renderer.cpp src/snake.cpp src/text.cpp)
-string(STRIP ${SDL2_LIBRARIES} SDL2_LIBRARIES)
-target_link_libraries(SnakeGame ${SDL2_LIBRARIES})

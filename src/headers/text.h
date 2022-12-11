@@ -2,26 +2,22 @@
 #define TEXT_H
 
 #include <string>
-// #include "SDL_ttf.h"
-#include <SDL/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL.h>
 
 class Text
 {
 public:
-    Text(std::string font_path, int font_size, const std::string &message, const SDL_Color &color);
-    // SDL_Texture *load_font(const std::string &font_path, int font_size, const std::string &message_text, const SDL_Color &color);
-    // void display(int x, int y) ; // may need const
-
-    void set_text_rect(int x, int y); 
-    SDL_Rect get_text_rect();
+    Text(SDL_Renderer *renderer, const std::string font_path, int font_size, const std::string &message, const SDL_Color &color);
+    SDL_Texture *load_font(SDL_Renderer *renderer, const std::string &font_path, int font_size, const std::string &message_text, const SDL_Color &color);
+    void set_text_rect(int x, int y);
+    const SDL_Rect get_text_rect();
+    SDL_Texture *get_text_texture();
+    SDL_Rect center_text(size_t screen_height, size_t screen_width);
     std::string get_font_path();
 
-    const SDL_Color color;
-    const std::string message;
-    int font_size;
 private:
-    SDL_Rect _text_rect;
-    std::string _font_path; //has a path, probably shouldn't be public
-    
+    mutable SDL_Rect text_rect_;
+    SDL_Texture *text_texture_;
 };
 #endif
