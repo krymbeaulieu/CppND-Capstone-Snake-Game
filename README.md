@@ -8,11 +8,10 @@ The Capstone Project gives you a chance to integrate what you've learned through
 
 In this project, you can build your own C++ application or extend this Snake game, following the principles you have learned throughout this Nanodegree Program. This project will demonstrate that you can independently create applications using a wide range of C++ features.
 
-## Planned Features for Capstone
-- Snake can no longer wrap around the window edges
-- Lose screen, try again reload
-- Score history tracking
-- pause the game
+## Features for Capstone
+- Lose screen displays high scores from file & lost message
+- Score history tracking (user input for name if high score reached that writes to file)
+- pause the game (only while game is in session, not on lose screen)
 
 
 ## Dependencies for Running Locally
@@ -43,7 +42,7 @@ Option 2 (install libs seperately in terminal):
     * `y` to continue install
   2. Install SDL Image library: `sudo apt-get install libsdl2-image-dev`
     * `y` to continue install
-3. Make a build directory in the top level directory: `mkdir build && cd build`
+3. Make a build directory in the top level repo directory: `mkdir build && cd build`
 4. Compile: `cmake .. && make`
 5. Run it: `./SnakeGame`.
 
