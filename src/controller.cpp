@@ -2,6 +2,8 @@
 #include <SDL2/SDL.h>
 #include "headers/snake.h"
 #include "headers/controller.h"
+#include "headers/defs.h"
+#include "headers/text.h"
 
 void Controller::ChangeDirection(Snake &snake, Snake::Direction input,
                                  Snake::Direction opposite) const
@@ -24,86 +26,124 @@ void Controller::SnakePause(Snake &snake) const
   return;
 }
 
-// bool isInRect(SDL_Event &e, Widget w) const{
-//   // check page's current widgets
-//   while(w.prev != nullptr){
-//     //
-//   }
-//   return false;
-// }
-
-void Controller::HandleInput(bool &running, Snake &snake, bool &paused) const
+void Controller::HandleInput(bool &running, Snake &snake, bool &paused, bool &game_lost, std::string &name_input, bool &name_done) const
 {
   SDL_Event e;
-  while (SDL_PollEvent(&e))
+  if (running)
   {
-    if (e.type == SDL_QUIT)
+    while (SDL_PollEvent(&e))
     {
-      running = false;
-    }
-    else if (e.type == SDL_KEYDOWN)
-    {
-      switch (e.key.keysym.sym)
+      if (e.type == SDL_QUIT)
       {
-      case SDLK_UP:
-        if (!paused)
-        {
-          ChangeDirection(snake, Snake::Direction::kUp,
-                          Snake::Direction::kDown);
-        }
-        break;
-
-      case SDLK_DOWN:
-        if (!paused)
-        {
-          ChangeDirection(snake, Snake::Direction::kDown,
-                          Snake::Direction::kUp);
-        }
-        break;
-
-      case SDLK_LEFT:
-        if (!paused)
-        {
-          ChangeDirection(snake, Snake::Direction::kLeft,
-                          Snake::Direction::kRight);
-        }
-        break;
-
-      case SDLK_RIGHT:
-        if (!paused)
-        {
-          ChangeDirection(snake, Snake::Direction::kRight,
-                          Snake::Direction::kLeft);
-        }
-        break;
-      case SDLK_k:
-        if (!paused)
-        {
-          snake.alive = false;
-        }
-        break;
-
-      // escape only works in game
-      case SDLK_ESCAPE:
-        if (paused)
-        {
-          // already paused, unpaused
-          paused = false;
-          SnakeUnpause(snake);
-          //maybe undo the game paused texture here
-        }
-        else
-        {
-          paused = true;
-          SnakePause(snake);
-        }
-
-        break;
+        running = false;
       }
-    }
-    else if (e.type == SDL_MOUSEBUTTONUP)
-    {
-      std::cout << "Pressed the mouse!" << std::endl;
+      else if (e.type == SDL_KEYDOWN)
+      {
+        switch (e.key.keysym.sym)
+        {
+        case SDLK_UP:
+          if (!paused)
+          {
+            ChangeDirection(snake, Snake::Direction::kUp,
+                            Snake::Direction::kDown);
+          }
+          break;
+
+        case SDLK_DOWN:
+          if (!paused)
+          {
+            ChangeDirection(snake, Snake::Direction::kDown,
+                            Snake::Direction::kUp);
+          }
+          break;
+
+        case SDLK_LEFT:
+          if (!paused)
+          {
+            ChangeDirection(snake, Snake::Direction::kLeft,
+                            Snake::Direction::kRight);
+          }
+          break;
+
+        case SDLK_RIGHT:
+          if (!paused)
+          {
+            ChangeDirection(snake, Snake::Direction::kRight,
+                            Snake::Direction::kLeft);
+          }
+          break;
+        case SDLK_k:
+          if (!paused)
+          {
+            // quick kill, for testing mostly
+            snake.alive = false;
+          }
+          break;
+
+        // escape only works in game
+        case SDLK_ESCAPE:
+          if (paused)
+          {
+            // already paused, unpaused
+            paused = false;
+            SnakeUnpause(snake);
+            //maybe undo the game paused texture here
+          }
+          else
+          {
+            if (!game_lost)
+            {
+              paused = true;
+              SnakePause(snake);
+            } // why pause when the game is over
+          }
+
+          break;
+        case SDLK_BACKSPACE:
+          if (game_lost && name_done == false)
+          {
+
+            if (!name_input.empty())
+            {
+              name_input.pop_back();
+            }
+          }
+          break;
+        case (SDLK_RETURN):
+          if (game_lost)
+          {
+            name_done = true;
+          }
+          break;
+        }
+      }
+      else if (e.type == SDL_MOUSEBUTTONUP)
+      {
+        std::cout << "Pressed the mouse!" << std::endl;
+      }
+      else if (game_lost)
+      {
+        if (e.type == SDL_TEXTINPUT)
+        {
+          //Keep a copy of the current version of the string
+          std::cout << "got to textinput: " << e.text.text << std::endl;
+          std::string temp = name_input;
+          if (temp.empty())
+          {
+            std::cout << "temp is empty" << std::endl;
+            name_input = e.text.text;
+            // std::cout << "message is " << name_input.get_message() << std::endl;
+            std::cout << "message is changed " << name_input << std::endl;
+          }
+          else if (temp.length() < MAX_NAME_LENGTH)
+          {
+            std::cout << " got to not empty" << std::endl;
+            name_input = (temp + e.text.text);
+            std::cout << "message is changed and is " << name_input << std::endl;
+          }
+          break;
+        }
+      }
     }
   }
 }

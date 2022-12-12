@@ -2,7 +2,7 @@
 project(SnakeGame)
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
-add_executable(${PROJECT_NAME} src/text.cpp src/main.cpp src/game.cpp src/controller.cpp src/renderer.cpp src/snake.cpp src/widgets.cpp)
+add_executable(${PROJECT_NAME} src/text.cpp src/main.cpp src/game.cpp src/highscores.cpp src/controller.cpp src/renderer.cpp src/snake.cpp)
 INCLUDE(FindPkgConfig)
 PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
 PKG_SEARCH_MODULE(SDL2IMAGE REQUIRED SDL2_image>=2.0.0)

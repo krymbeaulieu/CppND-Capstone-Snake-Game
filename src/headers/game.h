@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <random>
+#include <vector>
 #include <SDL2/SDL.h>
 #include "controller.h"
 #include "renderer.h"
@@ -14,7 +15,8 @@ class Game {
            std::size_t target_frame_duration);
   int GetScore() const;
   int GetSize() const;
-  bool IsGameLost();
+  
+
 
  private:
   Snake snake;
@@ -25,12 +27,12 @@ class Game {
   std::uniform_int_distribution<int> random_w;
   std::uniform_int_distribution<int> random_h;
   bool game_lost = false;
-
+  bool name_done = false;
   int score{0};
 
   void PlaceFood();
-  bool Update();
-  void LoadScoresFile(std::string fname);
+  void Update();
+
 };
 
 #endif

@@ -1,7 +1,11 @@
-#include <iostream>
+
+#include <stdio.h>
 #include <SDL2/SDL.h>
+#include <iostream>// cout
+
 #include "headers/game.h"
 #include "headers/defs.h"
+#include "headers/highscores.h"
 
 Game::Game(std::size_t grid_width, std::size_t grid_height)
     : snake(grid_width, grid_height),
@@ -23,35 +27,24 @@ void Game::Run(Controller const &controller, Renderer &renderer,
   bool set_high_score = true;
   bool running = true;
   bool paused = false;
-  bool game_lost = false;
+  // game_lost = false;
+  std::string name_input_text = "";
+  // bool name_done = false;
+  HighScores high_scores(GetScore());
   while (running)
   {
     frame_start = SDL_GetTicks();
 
     // Input, Update, Render - the main game loop.
-  std::cout << "before input game lost: " << game_lost << std::endl;
-
-    controller.HandleInput(running, snake, paused);
-      std::cout << "before update game lost: " << game_lost << std::endl;
-
-    game_lost = Update();
-          std::cout << "after update game lost: " << game_lost << std::endl;
+    controller.HandleInput(running, snake, paused, game_lost, name_input_text, name_done);
+    Update();
     if (paused)
     {
       renderer.RenderPauseMenu();
     }
     else if (game_lost)
     {
-      std::cout << "in game lost if" << std::endl;
-      //TODO: Lost. Handle scoring
-      LoadScoresFile(SCORE_FILE);
-      // set_high_score = checkScore(GetScore());
-      if (set_high_score)
-      {
-        std::cout << "you set a high score" << std::endl;
-      }
-      renderer.RenderLoseScreen();
-      
+      renderer.RenderLoseScreen(high_scores, name_input_text, name_done);
     }
     else
     {
@@ -80,17 +73,12 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     {
       SDL_Delay(target_frame_duration - frame_duration);
     }
+    if (game_lost && high_scores.CheckHighScore(GetScore()) && name_done)
+    {
+      high_scores.AddHighScore(GetScore(),name_input_text);
+      running = false;
+    }
   }
-}
-
-//! check if score is within ranking
-bool checkScore(int score)
-{
-  return false;
-}
-//! load the scores file for the lose screen and writing a new high score
-void Game::LoadScoresFile(std::string fname)
-{
 }
 
 void Game::PlaceFood()
@@ -111,12 +99,12 @@ void Game::PlaceFood()
   }
 }
 
-//! Update the game states, 0 if snake is dead, 1 if was able to update snake
-bool Game::Update()
+void Game::Update()
 {
-  if (!snake.alive){
-    //dead
-        return true;
+  if (!snake.alive)
+  {
+    game_lost = true;
+    return;
   }
   snake.Update();
 
@@ -133,9 +121,6 @@ bool Game::Update()
     snake.prev_speed = snake.speed;
     snake.speed += 0.02;
   }
-  // not dead keep going
-  return false;
 }
-
 int Game::GetScore() const { return score; }
 int Game::GetSize() const { return snake.size; }
