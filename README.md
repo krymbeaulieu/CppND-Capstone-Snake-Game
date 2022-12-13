@@ -46,6 +46,23 @@ Option 2 (install libs seperately in terminal):
 4. Compile: `cmake .. && make`
 5. Run it: `./SnakeGame`.
 
+## Core Classes
+The core classes remain the controller, game, renderer trio. The classes added are supplemental to the main architecure of the game loop.
+Classes can be explored via a generated documentation in html via doxygen. Open documentation/html/index.html in your browser of choice (firefox was tested in the workspace) to get the project's class documentation. 
+
+### New Items From Base Snake Game
+* defs - header that stores the games consts (text, max values, colors, etc.)
+* high scores class
+  * supports the Game class in the controller/update game/render game loop
+  * stores high scores
+  * writes new scores to file
+  * loads history (top 10) of scores to the game
+* Text class
+  * supports the renderer class 
+  * stores info about text and what the renderer needs to generate it on the fly (ex. font, color, surface, texture)
+  * multiple class instantiations available depending on if it has access to the renderer (rendering text on the pause screen vs. what needs input to rerender on screen which may not directly interface with the renderer)
+* Controller was updated to do text input for the high score setting & pause menu functionality
+* headers are now in headers/ to keep the src folder .cpp files less cluttered
 
 ## CC Attribution-ShareAlike 4.0 International
 

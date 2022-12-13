@@ -1,0 +1,60 @@
+\hypertarget{classSnake}{}\section{Snake Class Reference}
+\label{classSnake}\index{Snake@{Snake}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Direction} \{ {\bfseries k\+Up}, 
+{\bfseries k\+Down}, 
+{\bfseries k\+Left}, 
+{\bfseries k\+Right}
+ \}\hypertarget{classSnake_a17196bbf1b4636022495ef12635a68f7}{}\label{classSnake_a17196bbf1b4636022495ef12635a68f7}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Snake} (int grid\+\_\+width, int grid\+\_\+height)\hypertarget{classSnake_aa1f5dfbec9fde99f85144c71f1de4964}{}\label{classSnake_aa1f5dfbec9fde99f85144c71f1de4964}
+
+\item 
+void {\bfseries Update} ()\hypertarget{classSnake_a0df29710321124322656444348407aec}{}\label{classSnake_a0df29710321124322656444348407aec}
+
+\item 
+void {\bfseries Grow\+Body} ()\hypertarget{classSnake_a670232685308159dc43bdcfff8d0eba6}{}\label{classSnake_a670232685308159dc43bdcfff8d0eba6}
+
+\item 
+bool {\bfseries Snake\+Cell} (int x, int y)\hypertarget{classSnake_ac56395b863bb1155b15c43a97458be3f}{}\label{classSnake_ac56395b863bb1155b15c43a97458be3f}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Direction {\bfseries direction} = Direction\+::k\+Up\hypertarget{classSnake_a6b26c05b86ca6cdbd850d7cbadd32e8d}{}\label{classSnake_a6b26c05b86ca6cdbd850d7cbadd32e8d}
+
+\item 
+float {\bfseries speed} \{0.\+1f\}\hypertarget{classSnake_a094669fbc835da222339285f376f0494}{}\label{classSnake_a094669fbc835da222339285f376f0494}
+
+\item 
+float {\bfseries prev\+\_\+speed} \{speed\}\hypertarget{classSnake_a17dcac504074336d01bf616b3ef4ae9d}{}\label{classSnake_a17dcac504074336d01bf616b3ef4ae9d}
+
+\item 
+int {\bfseries size} \{1\}\hypertarget{classSnake_a3c9e9751f34ddc79cac932736c7ee718}{}\label{classSnake_a3c9e9751f34ddc79cac932736c7ee718}
+
+\item 
+bool {\bfseries alive} \{true\}\hypertarget{classSnake_a28ccc333925cd921ea0760b43bf5226c}{}\label{classSnake_a28ccc333925cd921ea0760b43bf5226c}
+
+\item 
+float {\bfseries head\+\_\+x}\hypertarget{classSnake_ac75c09dea7d08802d809980adab48cc0}{}\label{classSnake_ac75c09dea7d08802d809980adab48cc0}
+
+\item 
+float {\bfseries head\+\_\+y}\hypertarget{classSnake_ad63c9ba3e1c065bc72bd4e4647a49c5d}{}\label{classSnake_ad63c9ba3e1c065bc72bd4e4647a49c5d}
+
+\item 
+std\+::vector$<$ S\+D\+L\+\_\+\+Point $>$ {\bfseries body}\hypertarget{classSnake_a321d94eb13e000954671752788aff84e}{}\label{classSnake_a321d94eb13e000954671752788aff84e}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/headers/snake.\+h\item 
+src/snake.\+cpp\end{DoxyCompactItemize}

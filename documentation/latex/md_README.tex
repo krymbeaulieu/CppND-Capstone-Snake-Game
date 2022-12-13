@@ -1,0 +1,210 @@
+This is an extension of the starter repo for the Capstone project in the \href{https://www.udacity.com/course/c-plus-plus-nanodegree--nd213}{\tt Udacity C++ Nanodegree Program}. The code for this repo was inspired by \href{https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl}{\tt this} excellent Stack\+Overflow post and set of responses.
+
+
+
+The Capstone Project gives you a chance to integrate what you\textquotesingle{}ve learned throughout this program. This project will become an important part of your portfolio to share with current and future colleagues and employers.
+
+In this project, you can build your own C++ application or extend this \hyperlink{classSnake}{Snake} game, following the principles you have learned throughout this Nanodegree Program. This project will demonstrate that you can independently create applications using a wide range of C++ features.
+
+\subsection*{Features for Capstone}
+
+
+\begin{DoxyItemize}
+\item Lose screen displays high scores from file \& lost message
+\item Score history tracking (user input for name if high score reached that writes to file)
+\item pause the game (only while game is in session, not on lose screen)
+\end{DoxyItemize}
+
+\subsection*{Dependencies for Running Locally}
+
+
+\begin{DoxyItemize}
+\item cmake $>$= 3.\+7
+\begin{DoxyItemize}
+\item All O\+Ses\+: \href{https://cmake.org/install/}{\tt click here for installation instructions}
+\end{DoxyItemize}
+\item make $>$= 4.\+1 (Linux, Mac), 3.\+81 (Windows)
+\begin{DoxyItemize}
+\item Linux\+: make is installed by default on most Linux distros
+\item Mac\+: \href{https://developer.apple.com/xcode/features/}{\tt install Xcode command line tools to get make}
+\item Windows\+: \href{http://gnuwin32.sourceforge.net/packages/make.htm}{\tt Click here for installation instructions}
+\end{DoxyItemize}
+\item S\+D\+L2 $>$= 2.\+0
+\begin{DoxyItemize}
+\item All installation instructions can be found \href{https://wiki.libsdl.org/Installation}{\tt here} $>$Note that for Linux, an {\ttfamily apt} or {\ttfamily apt-\/get} installation is preferred to building from source.
+\end{DoxyItemize}
+\item gcc/g++ $>$= 5.\+4
+\begin{DoxyItemize}
+\item Linux\+: gcc / g++ is installed by default on most Linux distros
+\item Mac\+: same deal as make -\/ \href{https://developer.apple.com/xcode/features/}{\tt install Xcode command line tools}
+\item Windows\+: recommend using \href{http://www.mingw.org/}{\tt Min\+GW}
+\end{DoxyItemize}
+\item \href{https://github.com/libsdl-org/SDL_ttf}{\tt S\+D\+L\+T\+TF}
+\begin{DoxyItemize}
+\item \subsection*{Basic Build Instructions}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Clone this repo.
+\item Option 1 (install libs via provided script)\+:
+\begin{DoxyEnumerate}
+\item cd to repo
+\item {\ttfamily ./install\+\_\+libs.sh} Option 2 (install libs seperately in terminal)\+:
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Install S\+DL ttf library\+: {\ttfamily sudo apt-\/get install libsdl2-\/ttf-\/dev}
+\begin{DoxyItemize}
+\item {\ttfamily y} to continue install
+\end{DoxyItemize}
+\item Install S\+DL Image library\+: {\ttfamily sudo apt-\/get install libsdl2-\/image-\/dev}
+\begin{DoxyItemize}
+\item {\ttfamily y} to continue install
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+\item Make a build directory in the top level repo directory\+: {\ttfamily mkdir build \&\& cd build}
+\item Compile\+: {\ttfamily cmake .. \&\& make}
+\item Run it\+: {\ttfamily ./\+Snake\+Game}.
+\end{DoxyEnumerate}
+
+\subsection*{Core Classes}
+
+The core classes remain the controller, game, renderer trio. The classes added are supplemental to the main architecure of the game loop. Classes can be explored via a generated documentation in html via doxygen. Open documentation/html/index.\+html in your browser of choice (firefox was tested in the workspace) to get the project\textquotesingle{}s class documentation.
+
+\subsubsection*{New Items From Base \hyperlink{classSnake}{Snake} \hyperlink{classGame}{Game}}
+
+
+\begin{DoxyItemize}
+\item defs -\/ header that stores the games consts (text, max values, colors, etc.)
+\item high scores class
+\begin{DoxyItemize}
+\item supports the \hyperlink{classGame}{Game} class in the controller/update game/render game loop
+\item stores high scores
+\item writes new scores to file
+\item loads history (top 10) of scores to the game
+\end{DoxyItemize}
+\item \hyperlink{classText}{Text} class
+\begin{DoxyItemize}
+\item supports the renderer class
+\item stores info about text and what the renderer needs to generate it on the fly (ex. font, color, surface, texture)
+\item multiple class instantiations available depending on if it has access to the renderer (rendering text on the pause screen vs. what needs input to rerender on screen which may not directly interface with the renderer)
+\end{DoxyItemize}
+\item \hyperlink{classController}{Controller} was updated to do text input for the high score setting \& pause menu functionality
+\item headers are now in headers/ to keep the src folder .cpp files less cluttered
+\end{DoxyItemize}
+
+\subsection*{CC Attribution-\/\+Share\+Alike 4.\+0 International}
+
+Shield\+: \href{http://creativecommons.org/licenses/by-sa/4.0/}{\tt }
+
+This work is licensed under a \href{http://creativecommons.org/licenses/by-sa/4.0/}{\tt Creative Commons Attribution-\/\+Share\+Alike 4.\+0 International License}.
+
+\href{http://creativecommons.org/licenses/by-sa/4.0/}{\tt }
+
+\subsubsection*{Other Code Credits}
+
+\subsection*{Rubric Criteria Met}
+
+\subsubsection*{R\+E\+A\+D\+ME (All Rubric Points R\+E\+Q\+U\+I\+R\+ED)}
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*4{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}{\bf C\+R\+I\+T\+E\+R\+IA }&{\bf M\+E\+E\+TS S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+NS }&{\bf C\+U\+R\+R\+E\+N\+T\+LY M\+ET }&{\bf L\+I\+NE N\+U\+M\+B\+E\+R(\+S)  }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf C\+R\+I\+T\+E\+R\+IA }&{\bf M\+E\+E\+TS S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+NS }&{\bf C\+U\+R\+R\+E\+N\+T\+LY M\+ET }&{\bf L\+I\+NE N\+U\+M\+B\+E\+R(\+S)  }\\\cline{1-4}
+\endhead
+A R\+E\+A\+D\+ME with instructions is included with the project &The R\+E\+A\+D\+ME is included with the project and has instructions for building/running the project. If any additional libraries are needed to run the project, these are indicated with cross-\/platform installation instructions. You can submit your writeup as markdown or pdf. &✔️ &R\+E\+A\+D\+ME \\\cline{1-4}
+The R\+E\+A\+D\+ME indicates which project is chosen. &The R\+E\+A\+D\+ME describes the project you have built. The R\+E\+A\+D\+ME also indicates the file and class structure, along with the expected behavior or output of the program. &&R\+E\+A\+D\+ME \\\cline{1-4}
+The R\+E\+A\+D\+ME includes information about each rubric point addressed. &The R\+E\+A\+D\+ME indicates which rubric points are addressed. The R\+E\+A\+D\+ME also indicates where in the code (i.\+e. files and line numbers) that the rubric points are addressed. &&R\+E\+A\+D\+ME \\\cline{1-4}
+\end{longtabu}
+\subsubsection*{Compiling and Testing (All Rubric Points R\+E\+Q\+U\+I\+R\+ED)}
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*4{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}{\bf C\+R\+I\+T\+E\+R\+IA }&{\bf M\+E\+E\+TS S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+NS }&{\bf C\+U\+R\+R\+E\+N\+T\+LY M\+ET }&{\bf L\+I\+NE N\+U\+M\+B\+E\+R(\+S)  }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf C\+R\+I\+T\+E\+R\+IA }&{\bf M\+E\+E\+TS S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+NS }&{\bf C\+U\+R\+R\+E\+N\+T\+LY M\+ET }&{\bf L\+I\+NE N\+U\+M\+B\+E\+R(\+S)  }\\\cline{1-4}
+\endhead
+The submission must compile and run. &The project code must compile and run without errors. We strongly recommend using cmake and make, as provided in the starter repos. If you choose another build system, the code must compile on any reviewer platform. &✔️ &\\\cline{1-4}
+\end{longtabu}
+\subsubsection*{Loops, Functions, I/O}
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*4{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}{\bf C\+R\+I\+T\+E\+R\+IA }&{\bf M\+E\+E\+TS S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+NS }&{\bf C\+U\+R\+R\+E\+N\+T\+LY M\+ET }&{\bf L\+I\+NE N\+U\+M\+B\+E\+R(\+S)  }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf C\+R\+I\+T\+E\+R\+IA }&{\bf M\+E\+E\+TS S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+NS }&{\bf C\+U\+R\+R\+E\+N\+T\+LY M\+ET }&{\bf L\+I\+NE N\+U\+M\+B\+E\+R(\+S)  }\\\cline{1-4}
+\endhead
+The project demonstrates an understanding of C++ functions and control structures. &A variety of control structures are used in the project. The project code is clearly organized into functions. &✔️ &✔️ \\\cline{1-4}
+The project reads data from a file and process the data, or the program writes data to a file. &The project reads data from an external file or writes data to a file as part of the necessary operation of the program. &✔️ &✔️ \\\cline{1-4}
+The project accepts user input and processes the input. &The project accepts input from a user as part of the necessary operation of the program. &✔️ &✔️ \\\cline{1-4}
+\end{longtabu}
+\subsubsection*{Object Oriented Programming}
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*4{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}{\bf C\+R\+I\+T\+E\+R\+IA }&{\bf M\+E\+E\+TS S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+NS }&{\bf C\+U\+R\+R\+E\+N\+T\+LY M\+ET }&{\bf L\+I\+NE N\+U\+M\+B\+E\+R(\+S)  }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf C\+R\+I\+T\+E\+R\+IA }&{\bf M\+E\+E\+TS S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+NS }&{\bf C\+U\+R\+R\+E\+N\+T\+LY M\+ET }&{\bf L\+I\+NE N\+U\+M\+B\+E\+R(\+S)  }\\\cline{1-4}
+\endhead
+The project uses Object Oriented Programming techniques. &The project code is organized into classes with class attributes to hold the data, and class methods to perform tasks. &✔️ &✔️ \\\cline{1-4}
+Classes use appropriate access specifiers for class members. &All class data members are explicitly specified as public, protected, or private. &&\\\cline{1-4}
+Class constructors utilize member initialization lists. &All class members that are set to argument values are initialized through member initialization lists. &&\\\cline{1-4}
+Classes abstract implementation details from their interfaces. &All class member functions document their effects, either through function names, comments, or formal documentation. Member functions do not change program state in undocumented ways. &✔️ &✔️ \\\cline{1-4}
+Classes encapsulate behavior. &Appropriate data and functions are grouped into classes. Member data that is subject to an invariant is hidden from the user. State is accessed via member functions. &✔️ &✔️ \\\cline{1-4}
+Classes follow an appropriate inheritance hierarchy. &Inheritance hierarchies are logical. Composition is used instead of inheritance when appropriate. Abstract classes are composed of pure virtual functions. Override functions are specified. &&\\\cline{1-4}
+Overloaded functions allow the same function to operate on different parameters. &One function is overloaded with different signatures for the same function name. &✔️ &✔️ \\\cline{1-4}
+Derived class functions override virtual base class functions. &One member function in an inherited class overrides a virtual base class member function. &&\\\cline{1-4}
+Templates generalize functions in the project. &One function is declared with a template that allows it to accept a generic parameter. &&\\\cline{1-4}
+\end{longtabu}
+\subsubsection*{Memory Management}
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*4{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}{\bf C\+R\+I\+T\+E\+R\+IA }&{\bf M\+E\+E\+TS S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+NS }&{\bf C\+U\+R\+R\+E\+N\+T\+LY M\+ET }&{\bf L\+I\+NE N\+U\+M\+B\+E\+R(\+S)  }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf C\+R\+I\+T\+E\+R\+IA }&{\bf M\+E\+E\+TS S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+NS }&{\bf C\+U\+R\+R\+E\+N\+T\+LY M\+ET }&{\bf L\+I\+NE N\+U\+M\+B\+E\+R(\+S)  }\\\cline{1-4}
+\endhead
+The project makes use of references in function declarations. &At least two variables are defined as references, or two functions use pass-\/by-\/reference in the project code. &✔️ &✔️ \\\cline{1-4}
+The project uses destructors appropriately. &At least one class that uses unmanaged dynamically allocated memory, along with any class that otherwise needs to modify state upon the termination of an object, uses a destructor. &&\\\cline{1-4}
+The project uses scope / Resource Acquisition Is Initialization (R\+A\+II) where appropriate. &The project follows the Resource Acquisition Is Initialization pattern where appropriate, by allocating objects at compile-\/time, initializing objects when they are declared, and utilizing scope to ensure their automatic destruction. &&\\\cline{1-4}
+The project follows the Rule of 5. &For all classes, if any one of the copy constructor, copy assignment operator, move constructor, move assignment operator, and destructor are defined, then all of these functions are defined. &&\\\cline{1-4}
+The project uses move semantics to move data, instead of copying it, where possible. &For classes with move constructors, the project returns objects of that class by value, and relies on the move constructor, instead of copying the object. &&\\\cline{1-4}
+The project uses smart pointers instead of raw pointers. &The project uses at least one smart pointer\+: unique\+\_\+ptr, shared\+\_\+ptr, or weak\+\_\+ptr. The project does not use raw pointers. &&\\\cline{1-4}
+\end{longtabu}
+\subsubsection*{Concurrency}
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*4{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}{\bf C\+R\+I\+T\+E\+R\+IA }&{\bf M\+E\+E\+TS S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+NS }&{\bf C\+U\+R\+R\+E\+N\+T\+LY M\+ET }&{\bf L\+I\+NE N\+U\+M\+B\+E\+R(\+S)  }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf C\+R\+I\+T\+E\+R\+IA }&{\bf M\+E\+E\+TS S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+NS }&{\bf C\+U\+R\+R\+E\+N\+T\+LY M\+ET }&{\bf L\+I\+NE N\+U\+M\+B\+E\+R(\+S)  }\\\cline{1-4}
+\endhead
+The project uses multithreading. &The project uses multiple threads in the execution. &&\\\cline{1-4}
+A promise and future is used in the project. &A promise and future is used to pass data from a worker thread to a parent thread in the project code. &&\\\cline{1-4}
+A mutex or lock is used in the project. &A mutex or lock (e.\+g. std\+::lock\+\_\+guard or `std\+::unique\+\_\+lock) is used to protect data that is shared across multiple threads in the project code. &&\\\cline{1-4}
+A condition variable is used in the project. &A std\+::condition\+\_\+variable is used in the project code to synchronize thread execution. &&\\\cline{1-4}
+\end{longtabu}

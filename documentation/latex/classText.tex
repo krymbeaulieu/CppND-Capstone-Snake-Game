@@ -1,0 +1,65 @@
+\hypertarget{classText}{}\section{Text Class Reference}
+\label{classText}\index{Text@{Text}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classText_a4c3d12cc306933ed7beec0cfde097331}{Text} (S\+D\+L\+\_\+\+Renderer $\ast$renderer, const std\+::string font\+\_\+path, int font\+\_\+size, const std\+::string \&message, const S\+D\+L\+\_\+\+Color \&color)\hypertarget{classText_a4c3d12cc306933ed7beec0cfde097331}{}\label{classText_a4c3d12cc306933ed7beec0cfde097331}
+
+\begin{DoxyCompactList}\small\item\em Makes a text class obj and loads the font so it is ready to render. \end{DoxyCompactList}\item 
+\hyperlink{classText_a9b6dd74fdea091ab8aa3c383cc20f472}{Text} (const std\+::string font\+\_\+path, int font\+\_\+size, const std\+::string \&message, const S\+D\+L\+\_\+\+Color \&color)\hypertarget{classText_a9b6dd74fdea091ab8aa3c383cc20f472}{}\label{classText_a9b6dd74fdea091ab8aa3c383cc20f472}
+
+\begin{DoxyCompactList}\small\item\em Makes a text class obj without a renderer. \end{DoxyCompactList}\item 
+S\+D\+L\+\_\+\+Texture $\ast$ \hyperlink{classText_acdb749d03d9c86af2ffd33bf7bd41a9a}{load\+\_\+font\+\_\+texture} (S\+D\+L\+\_\+\+Renderer $\ast$renderer, const std\+::string \&font\+\_\+path, int font\+\_\+size, const std\+::string \&message\+\_\+text, const S\+D\+L\+\_\+\+Color \&color)\hypertarget{classText_acdb749d03d9c86af2ffd33bf7bd41a9a}{}\label{classText_acdb749d03d9c86af2ffd33bf7bd41a9a}
+
+\begin{DoxyCompactList}\small\item\em load a font for render later (probably soon since renderer is available) \end{DoxyCompactList}\item 
+S\+D\+L\+\_\+\+Texture $\ast$ \hyperlink{classText_a9d0f322f73e6c23ba612d9fc64c94529}{load\+\_\+font\+\_\+texture} (S\+D\+L\+\_\+\+Renderer $\ast$renderer)\hypertarget{classText_a9d0f322f73e6c23ba612d9fc64c94529}{}\label{classText_a9d0f322f73e6c23ba612d9fc64c94529}
+
+\begin{DoxyCompactList}\small\item\em Load a font from an already existing surface. \end{DoxyCompactList}\item 
+S\+D\+L\+\_\+\+Surface $\ast$ \hyperlink{classText_a48a35ad03203fe273d0a3db786174b30}{load\+\_\+font\+\_\+surface} (const std\+::string \&font\+\_\+path, int font\+\_\+size, const std\+::string \&message\+\_\+text, const S\+D\+L\+\_\+\+Color \&color)\hypertarget{classText_a48a35ad03203fe273d0a3db786174b30}{}\label{classText_a48a35ad03203fe273d0a3db786174b30}
+
+\begin{DoxyCompactList}\small\item\em load a font surface for render later \end{DoxyCompactList}\item 
+S\+D\+L\+\_\+\+Surface $\ast$ \hyperlink{classText_a37d945974232349f28cdca410b766197}{load\+\_\+font\+\_\+surface} ()\hypertarget{classText_a37d945974232349f28cdca410b766197}{}\label{classText_a37d945974232349f28cdca410b766197}
+
+\begin{DoxyCompactList}\small\item\em load a font internally \end{DoxyCompactList}\item 
+void \hyperlink{classText_a51e4d204b3ed3c44b4deef7b339121a4}{set\+\_\+text\+\_\+rect\+\_\+pos} (int x, int y)\hypertarget{classText_a51e4d204b3ed3c44b4deef7b339121a4}{}\label{classText_a51e4d204b3ed3c44b4deef7b339121a4}
+
+\begin{DoxyCompactList}\small\item\em in the case of text that should move, the rect can change \end{DoxyCompactList}\item 
+const S\+D\+L\+\_\+\+Rect \hyperlink{classText_ae86a06a3fbf68396c970c1721b282686}{get\+\_\+text\+\_\+rect} ()\hypertarget{classText_ae86a06a3fbf68396c970c1721b282686}{}\label{classText_ae86a06a3fbf68396c970c1721b282686}
+
+\begin{DoxyCompactList}\small\item\em get the text\textquotesingle{}s rect \end{DoxyCompactList}\item 
+S\+D\+L\+\_\+\+Texture $\ast$ \hyperlink{classText_a00fc212fa653487e732e7f1d220aec76}{get\+\_\+text\+\_\+texture} ()\hypertarget{classText_a00fc212fa653487e732e7f1d220aec76}{}\label{classText_a00fc212fa653487e732e7f1d220aec76}
+
+\begin{DoxyCompactList}\small\item\em get the texture, for rendering later \end{DoxyCompactList}\item 
+S\+D\+L\+\_\+\+Rect \hyperlink{classText_a61014e4523440c64103076fd4cd824eb}{center\+\_\+text} (size\+\_\+t screen\+\_\+height, size\+\_\+t screen\+\_\+width)\hypertarget{classText_a61014e4523440c64103076fd4cd824eb}{}\label{classText_a61014e4523440c64103076fd4cd824eb}
+
+\begin{DoxyCompactList}\small\item\em function to center text (provide rect values when rendering). give the screen\textquotesingle{}s w/h to make the rect calc \end{DoxyCompactList}\item 
+std\+::string {\bfseries get\+\_\+font\+\_\+path} ()\hypertarget{classText_a4a3ed0ce1dc44083cecd74928f68c9b9}{}\label{classText_a4a3ed0ce1dc44083cecd74928f68c9b9}
+
+\item 
+std\+::string {\bfseries get\+\_\+message} ()\hypertarget{classText_a3bcbed44873a5d3a6fecc5f4dd3956b0}{}\label{classText_a3bcbed44873a5d3a6fecc5f4dd3956b0}
+
+\item 
+S\+D\+L\+\_\+\+Surface $\ast$ {\bfseries get\+\_\+text\+\_\+surface} ()\hypertarget{classText_aa9362aac17dfdfe76f3a6276c82a2765}{}\label{classText_aa9362aac17dfdfe76f3a6276c82a2765}
+
+\item 
+void {\bfseries set\+\_\+text\+\_\+surface} (S\+D\+L\+\_\+\+Surface $\ast$surface)\hypertarget{classText_a10e1a33d49819cb1770bdaaa8ffd084c}{}\label{classText_a10e1a33d49819cb1770bdaaa8ffd084c}
+
+\item 
+void {\bfseries set\+\_\+message} (std\+::string message)\hypertarget{classText_ab00f846fa0e3f75918c37198fb58b04c}{}\label{classText_ab00f846fa0e3f75918c37198fb58b04c}
+
+\item 
+void {\bfseries set\+\_\+text\+\_\+texture} (S\+D\+L\+\_\+\+Texture $\ast$texture)\hypertarget{classText_a33c666aae2e2373d890a266d961125cd}{}\label{classText_a33c666aae2e2373d890a266d961125cd}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries need\+\_\+to\+\_\+load\+\_\+texture}\hypertarget{classText_a73c7da0ac348c550028335946986220a}{}\label{classText_a73c7da0ac348c550028335946986220a}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/headers/text.\+h\item 
+src/text.\+cpp\end{DoxyCompactItemize}
