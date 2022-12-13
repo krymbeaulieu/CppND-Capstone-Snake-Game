@@ -91,6 +91,8 @@ This work is licensed under a
 
 ### Other Code Credits
 [CDL Tutorials]: https://www.parallelrealities.co.uk/tutorials
+[Lazy Foo Tutorials]: /home/workspace/CppND-Capstone-Snake-Game/documentation/latex
+
 
 ## Rubric Criteria Met
 ### README (All Rubric Points REQUIRED)
