@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
-#include <iostream>// cout
+#include <iostream> // cout
 
 #include "headers/game.h"
 #include "headers/defs.h"
@@ -27,9 +27,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
   bool set_high_score = true;
   bool running = true;
   bool paused = false;
-  // game_lost = false;
   std::string name_input_text = "";
-  // bool name_done = false;
   HighScores high_scores(GetScore());
   while (running)
   {
@@ -75,7 +73,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     }
     if (game_lost && high_scores.CheckHighScore(GetScore()) && name_done)
     {
-      high_scores.AddHighScore(GetScore(),name_input_text);
+      high_scores.AddHighScore(GetScore(), name_input_text);
       running = false;
     }
   }

@@ -26,7 +26,6 @@ public:
     void set_text_texture(SDL_Texture *texture);
     bool need_to_load_texture;
 
-
 private:
     std::string message_;
     std::string font_path_;

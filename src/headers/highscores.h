@@ -13,8 +13,9 @@ public:
     std::vector<int> GetHighScores();
     std::vector<std::string> GetHighScoreNames();
     bool set_high_score;
-    void AddHighScore(const int score,std::string name_to_add);
+    void AddHighScore(const int score, std::string name_to_add);
     void WriteScoresToFile(std::string fname);
+
 private:
     std::string current_name_;
     std::vector<int> high_scores_;

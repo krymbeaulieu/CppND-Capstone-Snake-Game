@@ -117,29 +117,19 @@ void Controller::HandleInput(bool &running, Snake &snake, bool &paused, bool &ga
           break;
         }
       }
-      else if (e.type == SDL_MOUSEBUTTONUP)
-      {
-        std::cout << "Pressed the mouse!" << std::endl;
-      }
       else if (game_lost)
       {
         if (e.type == SDL_TEXTINPUT)
         {
           //Keep a copy of the current version of the string
-          std::cout << "got to textinput: " << e.text.text << std::endl;
           std::string temp = name_input;
           if (temp.empty())
           {
-            std::cout << "temp is empty" << std::endl;
             name_input = e.text.text;
-            // std::cout << "message is " << name_input.get_message() << std::endl;
-            std::cout << "message is changed " << name_input << std::endl;
           }
           else if (temp.length() < MAX_NAME_LENGTH)
           {
-            std::cout << " got to not empty" << std::endl;
             name_input = (temp + e.text.text);
-            std::cout << "message is changed and is " << name_input << std::endl;
           }
           break;
         }

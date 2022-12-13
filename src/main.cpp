@@ -3,7 +3,8 @@
 #include "headers/game.h"
 #include "headers/renderer.h"
 
-int main() {
+int main()
+{
   constexpr std::size_t kFramesPerSecond{60};
   constexpr std::size_t kMsPerFrame{1000 / kFramesPerSecond};
   constexpr std::size_t kScreenWidth{640};
@@ -13,9 +14,8 @@ int main() {
 
   Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
   Controller controller;
-  
-  Game game(kGridWidth, kGridHeight);
 
+  Game game(kGridWidth, kGridHeight);
 
   game.Run(controller, renderer, kMsPerFrame);
 

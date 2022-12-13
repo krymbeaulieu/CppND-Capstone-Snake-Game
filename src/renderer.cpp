@@ -118,7 +118,7 @@ void Renderer::RenderLoseScreen(HighScores &high_scores, std::string &name_text,
       //not empty so render
       Text curr_name = Text(sdl_renderer, FONT_FNAME, GAME_HIGH_SCORE_ENTER_NAME_FONT_SIZE, name_text, GAME_HIGH_SCORE_ENTER_NAME_COLOR);
       center_loc = curr_name.center_text(screen_height, screen_width);
-      RenderText(curr_name, center_loc.x, (center_loc.y / 3) + set_hs_text.get_text_rect().h + enter_name_text.get_text_rect().h ); // below the prompt
+      RenderText(curr_name, center_loc.x, (center_loc.y / 3) + set_hs_text.get_text_rect().h + enter_name_text.get_text_rect().h); // below the prompt
     }
   }
   // High scores
@@ -151,19 +151,15 @@ void Renderer::RenderScores(HighScores &high_scores, bool &name_done)
     // set up rank
     Text rank_text(sdl_renderer, FONT_FNAME, GAME_HIGH_SCORE_TABLE_ENTRY_FONT_SIZE, std::to_string(i + 1), GAME_HIGH_SCORE_TABLE_ENTRY_COLOR);
     SDL_Rect center_loc = rank_text.center_text(screen_height, screen_width);
-    RenderText(rank_text, center_loc.x / 3, center_loc.y + (i * rank_text.get_text_rect().h)); // put centered up top //
+    RenderText(rank_text, center_loc.x / 3, center_loc.y + (i * rank_text.get_text_rect().h)); // put centered up top 1/3 to the left
     // set up name
     Text name_text(sdl_renderer, FONT_FNAME, GAME_HIGH_SCORE_TABLE_ENTRY_FONT_SIZE, names[i], GAME_HIGH_SCORE_TABLE_ENTRY_COLOR);
     center_loc = name_text.center_text(screen_height, screen_width);
-    RenderText(name_text, center_loc.x, center_loc.y + (i * name_text.get_text_rect().h)); // put centered up top //
+    RenderText(name_text, center_loc.x, center_loc.y + (i * name_text.get_text_rect().h)); // put centered up top
     // set up score
     Text score_text(sdl_renderer, FONT_FNAME, GAME_HIGH_SCORE_TABLE_ENTRY_FONT_SIZE, std::to_string(scores[i]), GAME_HIGH_SCORE_TABLE_ENTRY_COLOR);
     center_loc = score_text.center_text(screen_height, screen_width);
-    RenderText(score_text, center_loc.x * 5 / 3, center_loc.y + (i * score_text.get_text_rect().h)); // put centered up top //
-    if (name_done)
-    {
-      std::cout << "name is done TODO" << std::endl;
-    }
+    RenderText(score_text, center_loc.x * 5 / 3, center_loc.y + (i * score_text.get_text_rect().h)); // put centered up top 1/3 to the right
   }
 }
 void Renderer::RenderPauseMenu()
@@ -193,7 +189,6 @@ void Renderer::RenderText(Text text, int x, int y)
   if (text.need_to_load_texture)
   {
     text.set_text_texture(text.load_font_texture(sdl_renderer));
-    std::cout << "loaded new texture " << text.get_text_texture() << text.get_text_surface() << std::endl;
     int w = text.get_text_rect().w;
     int h = text.get_text_rect().h;
     SDL_QueryTexture(text.get_text_texture(), nullptr, nullptr, &w, &h);

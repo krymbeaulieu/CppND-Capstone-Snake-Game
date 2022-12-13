@@ -17,10 +17,10 @@ public:
   void Render(Snake const snake, SDL_Point const &food);
   void UpdateWindowTitle(int score, int fps);
   void RenderPauseMenu();
-  void RenderLoseScreen(HighScores &high_scores,std::string &name_text,bool &name_done);
+  void RenderLoseScreen(HighScores &high_scores, std::string &name_text, bool &name_done);
   void RenderText(Text text, int x, int y);
   void RenderScoreHeaders();
-  void RenderScores(HighScores &high_scores,bool &name_done);
+  void RenderScores(HighScores &high_scores, bool &name_done);
   void ClearScreen();
   SDL_Renderer getRenderer();
 
