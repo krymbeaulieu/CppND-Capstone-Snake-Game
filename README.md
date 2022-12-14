@@ -33,16 +33,21 @@ In this project, you can build your own C++ application or extend this Snake gam
 ## Basic Build Instructions
 
 1. Clone this repo.
-2. 
+2. Pick an option to install libraries:
+
 Option 1 (install libs via provided script):
-  1. cd to repo
-  2. `./install_libs.sh`
+  1. cd to repo. Note the repo directory for the udacity workspace should be something like `/home/workspace/CppND-Capstone-Snake-Game`
+  2. run `./install_libs.sh`
+
 Option 2 (install libs seperately in terminal):
   1. Install SDL ttf library: `sudo apt-get install libsdl2-ttf-dev`
     * `y` to continue install
   2. Install SDL Image library: `sudo apt-get install libsdl2-image-dev`
     * `y` to continue install
+
 3. Make a build directory in the top level repo directory: `mkdir build && cd build`
+  * if a build directory exists, you can remove it and all its contents and then run #3
+  * note the top level directory for the udacity workspace submission looks like `/home/workspace/CppND-Capstone-Snake-Game`
 4. Compile: `cmake .. && make`
 5. Run it: `./SnakeGame`.
 

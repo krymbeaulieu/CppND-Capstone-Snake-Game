@@ -1,3 +1,4 @@
 RANK NAME SCORE
 1 KRY 23
 2 asd 0
+3 ahh 0
