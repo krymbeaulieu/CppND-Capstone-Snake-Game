@@ -103,6 +103,7 @@ void Renderer::RenderLoseScreen(HighScores &high_scores, std::string &name_text,
   SDL_Rect center_loc = lose_text.center_text(screen_height, screen_width);
   RenderText(lose_text, center_loc.x, center_loc.y / 6); // put centered up top
                                                          // Enter High score name
+
   if (high_scores.set_high_score)
   {
     Text set_hs_text(sdl_renderer, FONT_FNAME, GAME_HIGH_SCORE_HEADER_FONT_SIZE, GAME_HIGH_SCORE_TEXT, GAME_HIGH_SCORE_COLOR);

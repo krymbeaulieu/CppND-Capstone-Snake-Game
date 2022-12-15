@@ -24,7 +24,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
   Uint32 frame_end;
   Uint32 frame_duration;
   int frame_count = 0;
-  bool set_high_score = true;
+  // bool set_high_score = true;
   bool running = true;
   bool paused = false;
   std::string name_input_text = "";
@@ -42,6 +42,11 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     }
     else if (game_lost)
     {
+      if (high_scores.CheckSetHighScore(GetScore()))
+      {
+        high_scores.set_high_score = true;
+      }
+
       renderer.RenderLoseScreen(high_scores, name_input_text, name_done);
     }
     else
@@ -71,10 +76,10 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     {
       SDL_Delay(target_frame_duration - frame_duration);
     }
-    if (game_lost && high_scores.CheckHighScore(GetScore()) && name_done)
+    if (game_lost && high_scores.CheckSetHighScore(GetScore()) && name_done)
     {
       high_scores.AddHighScore(GetScore(), name_input_text);
-      running = false;
+      running = false; // you only get one chance for now
     }
   }
 }
@@ -101,7 +106,9 @@ void Game::Update()
 {
   if (!snake.alive)
   {
+
     game_lost = true;
+
     return;
   }
   snake.Update();

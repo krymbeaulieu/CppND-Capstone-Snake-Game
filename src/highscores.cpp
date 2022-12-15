@@ -6,18 +6,18 @@
 HighScores::HighScores(const int &score)
 {
   LoadScoresFile(SCORE_FNAME); // load once!
-  set_high_score = CheckHighScore(score);
 }
 
 //! check if score is within ranking
-bool HighScores::CheckHighScore(const int score)
+bool HighScores::CheckSetHighScore(const int &score)
 {
-  if (score > high_scores_[high_scores_.size() - 1] || high_scores_.size() < MAX_HIGH_SCORES)
+  if (high_scores_.empty() || score > high_scores_[high_scores_.size() - 1] || high_scores_.size() < MAX_HIGH_SCORES)
   {
-    return true; //greater than last item (already sorted) or less than max high scores
+    return true; //greater than last item (already sorted) or less than max high scores or there is room on the scoreboard
   }
   return false;
 }
+
 //! load the scores file for the lose screen and writing a new high score
 void HighScores::LoadScoresFile(std::string fname)
 {
@@ -27,10 +27,10 @@ void HighScores::LoadScoresFile(std::string fname)
 
   std::string header;
   std::ifstream file(SCORE_FNAME);
+
   if (!file.is_open())
   { /* validate file open for reading */
     HighScores::WriteNewScoresFile(SCORE_FNAME);
-    file.close();
   }
   else
   {
@@ -41,8 +41,8 @@ void HighScores::LoadScoresFile(std::string fname)
       names_.emplace_back(name);
       high_scores_.emplace_back(loaded_score);
     }
-    file.close();
   }
+  file.close();
 }
 
 //! wite a score file and handle score loading
@@ -60,6 +60,7 @@ std::vector<std::string> HighScores::GetHighScoreNames()
 {
   return names_;
 }
+
 //! add high score to the list (in the right spot)
 void HighScores::AddHighScore(const int score, std::string name_input_text)
 {
